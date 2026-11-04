@@ -1,0 +1,16 @@
+=== command ===
+env CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=0 python bench_vllm.py --model Qwen/Qwen3-4B --tp 2 --bs 1 --in-len 1024 --out-len 512 --method double-len --warmup 1
+
+=== stdout ===
+
+
+=== stderr ===
+usage: bench_vllm.py [-h] [--model MODEL] [--bs BS] [--in-len IN_LEN]
+                     [--out-len OUT_LEN] [--prefill-reps PREFILL_REPS]
+                     [--decode-reps DECODE_REPS]
+                     [--target-window-s TARGET_WINDOW_S] [--max-reps MAX_REPS]
+                     [--method {prefill-sub,double-len}] [--dtype DTYPE]
+                     [--gpu-mem-util GPU_MEM_UTIL]
+                     [--max-model-len MAX_MODEL_LEN] [--eager] [--seed SEED]
+                     [--warmup WARMUP] [--settle-s SETTLE_S]
+bench_vllm.py: error: unrecognized arguments: --tp 2
