@@ -18,7 +18,7 @@ Emits decode_metrics.csv with one row per (model, batch, mode, setting).
 """
 import csv, glob, os, re, statistics as st
 
-SRC = "/mnt/user-data/uploads"
+SRC = os.environ.get("SRC", "results/dvfs/csv")
 
 # The filename is not a reliable key: one of the uploads is the 8B model but
 # still matches a bs1 pattern. Read model/bs out of the CSV contents instead.

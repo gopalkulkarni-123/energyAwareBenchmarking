@@ -30,11 +30,121 @@ import os
 import random
 import sys
 import time
+import torch
 
 
 def mark(name):
     print(f"MARK {name} {time.time():.6f}", flush=True)
 
+def run_decode_window(llm, args, prompts, ver, t_load, chunk_warn):
+    """--method decode-window: one decode-only window, measured directly.
+
+    Adds the requests to the engine and calls llm_engine.step() in a loop,
+    which is the loop LLM.generate() runs inside (checked for vLLM 0.31).
+    Every new token is time-stamped when it arrives.
+      prefill window: requests added -> every sequence has its first token
+      decode window:  every sequence has its first token -> first one done
+    """
+    from vllm import SamplingParams
+    from vllm.sampling_params import RequestOutputKind
+
+    eng = llm.llm_engine
+
+    # Warmup with the same batch and prompt shape. Decode kernels do not
+    # depend on the generation length, so a short generation is enough.
+    sp_warm = SamplingParams(max_tokens=min(args.out_len, 64), ignore_eos=True,
+                             temperature=0.0)
+    for _ in range(args.warmup):
+        llm.generate(prompts, sp_warm, use_tqdm=False)
+    time.sleep(args.settle_s)
+
+    # DELTA: each output carries only the tokens that are new since the last step
+    sp = SamplingParams(max_tokens=args.out_len, ignore_eos=True, temperature=0.0,
+                        output_kind=RequestOutputKind.DELTA)
+    ids = [f"dw{j}" for j in range(len(prompts))]
+    times = {rid: [] for rid in ids}      # request id -> token arrival times
+
+    t_add = time.time()
+    for rid, p in zip(ids, prompts):
+        # Outputs carry this id. The return value has a random suffix added
+        # by vLLM, so it is not used.
+        eng.add_request(rid, p, sp)
+    n_step, prof_end = 0, None
+    while eng.has_unfinished_requests():
+        if args.profile_at and n_step == args.profile_at:
+            torch.cuda.synchronize()
+            torch.cuda.profiler.start()
+            prof_end = n_step + args.profile_steps
+        outs = eng.step()
+        n_step += 1
+        if prof_end is not None and n_step == prof_end:
+            torch.cuda.synchronize()
+            torch.cuda.profiler.stop()
+            prof_end = None
+        now = time.time()
+        for o in outs:
+            if o.request_id in times:
+                n_new = sum(len(c.token_ids) for c in o.outputs)
+                times[o.request_id].extend([now] * n_new)
+
+    seqs = list(times.values())
+    if any(len(t) < 3 for t in seqs):
+        print(f"error: a sequence returned fewer than 3 tokens "
+              f"({[len(t) for t in seqs]})", file=sys.stderr)
+        sys.exit(1)
+    start = max(t[0] for t in seqs)       # last sequence has its first token
+    end = min(t[-1] for t in seqs)        # first sequence is done
+    if end <= start:
+        print("error: empty decode window", file=sys.stderr)
+        sys.exit(1)
+    steps = min(sum(1 for x in t if start < x <= end) for t in seqs)
+    window = end - start
+    multi = max(max(t.count(x) for x in set(t)) for t in seqs)
+
+    for name, t in (("prefill_start", t_add), ("prefill_end", start),
+                    ("decode_start", start), ("decode_end", end)):
+        print(f"MARK {name} {t:.6f}", flush=True)
+    if window < 3.0:
+        print(f"[warn] decode window is only {window:.2f}s, too few samples; "
+              f"raise --out-len", file=sys.stderr)
+
+    info = dict(
+        vllm_version=ver,
+        model=args.model,
+        method=args.method,
+        bs=args.bs,
+        in_len=args.in_len,
+        out_len=args.out_len,
+        eager=args.eager,
+        tp=args.tp,
+        custom_ar=not args.no_custom_ar,
+        load_s=round(t_load, 2),
+        prefill_reps=1,
+        decode_reps=1,
+        t_prefill_s=round(start - t_add, 4),
+        t_decode_s=round(window, 4),
+        steps=steps,
+        step_ms=round(1000 * window / steps, 3),
+        n_prefill_tokens=args.bs * args.in_len,
+        n_decode_tokens=args.bs * steps,
+        kv_depth_lo=args.in_len + 1,
+        kv_depth_hi=args.in_len + args.out_len,
+        max_tokens_per_arrival=multi,
+    )
+    info["decode_tok_per_s"] = round(args.bs * steps / window, 2)
+    if multi > 1:
+        info["note"] = ("some steps delivered several tokens at once; the step "
+                        "count is right, but step_ms is an average")
+    if chunk_warn:
+        info["warning"] = chunk_warn
+        print(f"[warn] {chunk_warn}", file=sys.stderr)
+
+    print("WORKLOAD_JSON " + json.dumps(info), flush=True)
+    print(f"WORKLOAD_METRIC {args.bs * steps}", flush=True)
+    print(f"# load {t_load:.1f}s | decode-window | prefill {start - t_add:.3f}s | "
+          f"decode {window:.2f}s, {steps} steps, {info['step_ms']} ms per step "
+          f"({info['decode_tok_per_s']} tok/s, KV depth "
+          f"{info['kv_depth_lo']}-{info['kv_depth_hi']})", file=sys.stderr)
 
 def main():
     ap = argparse.ArgumentParser()
@@ -53,7 +163,7 @@ def main():
                          "At 50 ms sampling, 8 s gives roughly 160 points")
     ap.add_argument("--max-reps", type=int, default=1000)
     ap.add_argument("--method", default="prefill-sub",
-                    choices=("prefill-sub", "double-len"),
+                    choices=("prefill-sub", "double-len", "decode-window"),
                     help="How decode is isolated. 'prefill-sub' (default) times a "
                          "prefill-only window and subtracts it, scaled by the "
                          "repetition ratio. 'double-len' instead times "
@@ -66,6 +176,13 @@ def main():
                          "decode is O(L)) and at large batch.")
     ap.add_argument("--dtype", default="bfloat16")
     ap.add_argument("--gpu-mem-util", type=float, default=0.90)
+    ap.add_argument("--tp", type=int, default=1, help="tensor parallel size")
+    ap.add_argument("--profile-at", type=int, default=0,
+                    help="decode-window: switch the CUDA profiler on at this engine step (0 = off)")
+    ap.add_argument("--profile-steps", type=int, default=3,
+                    help="decode-window: number of engine steps to profile")
+    ap.add_argument("--no-custom-ar", action="store_true",
+                    help="disable vLLM's custom all-reduce, so NCCL is used")
     ap.add_argument("--max-model-len", type=int, default=None)
     ap.add_argument("--eager", action="store_true",
                     help="enforce_eager. Off by default for DVFS measurement so the "
@@ -118,6 +235,8 @@ def main():
         enforce_eager=args.eager,
         disable_log_stats=True,
         seed=args.seed,
+        tensor_parallel_size=args.tp,
+        disable_custom_all_reduce=args.no_custom_ar,
     )
     if max_batched is not None:
         kw["max_num_batched_tokens"] = max_batched
@@ -142,6 +261,9 @@ def main():
     sp_long = SamplingParams(max_tokens=2 * args.out_len, ignore_eos=True,
                              temperature=0.0)
     dbl = args.method == "double-len"
+    if args.method == "decode-window":
+        run_decode_window(llm, args, prompts, ver, t_load, chunk_warn)
+        return
 
     # ---- warmup: must use exactly the same shapes as the measurement, otherwise
     #      Triton kernels JIT-compile near the measurement window (see the
@@ -245,6 +367,8 @@ def main():
         in_len=args.in_len,
         out_len=args.out_len,
         eager=args.eager,
+        tp=args.tp,
+        custom_ar=not args.no_custom_ar,
         load_s=round(t_load, 2),
         prefill_reps=short_reps,
         decode_reps=long_reps,
