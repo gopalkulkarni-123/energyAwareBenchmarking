@@ -1,0 +1,620 @@
+(MainProcess pid=49523) INFO 11-19 17:51:00 [api_utils.py:286] non-default args: {'dtype': 'bfloat16', 'max_model_len': 1688, 'enable_prefix_caching': False, 'gpu_memory_utilization': 0.35, 'max_num_batched_tokens': 24576, 'max_num_seqs': 24, 'disable_log_stats': True, 'model': '/home/hpcgkulk/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c'}
+(MainProcess pid=49523) WARNING 11-19 17:51:00 [arg_utils.py:1910] The global random seed is set to 0. Since VLLM_ENABLE_V1_MULTIPROCESSING is set to False, this may affect the random state of the Python process that launched vLLM.
+(MainProcess pid=49523) INFO 11-19 17:51:00 [model.py:699] Resolved architecture: Qwen3ForCausalLM
+(MainProcess pid=49523) INFO 11-19 17:51:00 [model.py:2109] Using max model len 1688
+(MainProcess pid=49523) INFO 11-19 17:51:00 [scheduler.py:308] Chunked prefill is enabled with max_num_batched_tokens=24576.
+(MainProcess pid=49523) INFO 11-19 17:51:00 [kernel.py:408] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=49523) INFO 11-19 17:51:03 [core.py:129] Initializing a V1 LLM engine (v0.31.0) with config: model='/home/hpcgkulk/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c', speculative_config=None, tokenizer='/home/hpcgkulk/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=1688, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=/home/hpcgkulk/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::qwen4_exp_ple_short_conv', 'vllm::qwen4_exp_qsa_with_output', 'vllm::linear_attention', 'vllm::qwen_gdn_attention_core', 'vllm::qwen_gdn_attention_core_fused_norm_packed', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [24576], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 48, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+==WARNING== Note: Running with uncontrolled GPU caches. Profiling results may be inconsistent.
+==WARNING== Note: Running with unmodified GPU clocks. If not controlled otherwise, profiling results may be inconsistent.
+==PROF== Connected to process 49523 (/usr/bin/python3.10)
+(MainProcess pid=49523) INFO 11-19 17:51:04 [parallel_state.py:1825] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_26876425344e4c6b9c170422e26b5790 backend=nccl
+(MainProcess pid=49523) INFO 11-19 17:51:04 [parallel_state.py:2269] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank N/A, EPLB rank N/A
+(MainProcess pid=49523) INFO 11-19 17:51:04 [gpu_worker.py:479] Using V2 Model Runner
+(MainProcess pid=49523) INFO 11-19 17:51:05 [model_runner.py:375] Loading model from scratch...
+(MainProcess pid=49523) INFO 11-19 17:51:07 [cuda.py:526] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(MainProcess pid=49523) INFO 11-19 17:51:07 [flash_attn.py:1167] Using FlashAttention version 2
+(MainProcess pid=49523) INFO 11-19 17:51:07 [weight_utils.py:1063] Filesystem type for checkpoints: EXT4. Checkpoint size: 7.49 GiB. Available RAM: 93.22 GiB.
+(MainProcess pid=49523) INFO 11-19 17:51:07 [weight_utils.py:1086] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+Loading safetensors checkpoint shards:   0% Completed | 0/3 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  33% Completed | 1/3 [00:00<00:01,  1.48it/s]
+Loading safetensors checkpoint shards:  67% Completed | 2/3 [00:01<00:00,  1.25it/s]
+Loading safetensors checkpoint shards: 100% Completed | 3/3 [00:01<00:00,  1.91it/s]
+Loading safetensors checkpoint shards: 100% Completed | 3/3 [00:01<00:00,  1.71it/s]
+
+(MainProcess pid=49523) INFO 11-19 17:51:09 [default_loader.py:484] Loading weights took 1.77 seconds
+(MainProcess pid=49523) INFO 11-19 17:51:10 [model_runner.py:407] Model loading took 7.56 GiB memory and 4.605378 seconds
+(MainProcess pid=49523) INFO 11-19 17:51:10 [topk_topp_sampler.py:96] FlashInfer top-p/top-k sampling disabled via VLLM_USE_FLASHINFER_SAMPLER=0.
+(MainProcess pid=49523) INFO 11-19 17:51:10 [torch_utils.py:286] Reducing Torch threads from 252 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(MainProcess pid=49523) INFO 11-19 17:51:10 [utils.py:343] Using LBNHC KV cache layout.
+(MainProcess pid=49523) INFO 11-19 17:51:19 [backends.py:1090] Using cache directory: /home/hpcgkulk/.cache/vllm/torch_compile_cache/efc2bb82da/rank_0_0/backbone for vLLM's torch.compile
+(MainProcess pid=49523) INFO 11-19 17:51:19 [backends.py:1151] Dynamo bytecode transform time: 8.44 s
+(MainProcess pid=49523) INFO 11-19 17:51:43 [backends.py:391] Compiling a graph for compile range (1, 24576) takes 23.77 s
+(MainProcess pid=49523) INFO 11-19 17:51:49 [backends.py:916] collected artifacts: 37 entries, 3 artifacts, 6306977 bytes total
+(MainProcess pid=49523) INFO 11-19 17:51:49 [decorators.py:717] saved AOT compiled function to /home/hpcgkulk/.cache/vllm/torch_compile_cache/torch_aot_compile/b6c5a3080809a7f7ff5e383f538c4e4394ada25b422b7d82776d93756fbb2750/rank_0_0/model
+(MainProcess pid=49523) INFO 11-19 17:51:49 [monitor.py:53] torch.compile took 38.31 s in total
+(MainProcess pid=49523) INFO 11-19 17:51:50 [monitor.py:81] Initial profiling/warmup run took 0.89 s
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/9 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):  11%|█         | 1/9 [00:00<00:02,  3.99it/s]Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 2/9 [00:00<00:01,  4.85it/s]Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 3/9 [00:00<00:01,  5.33it/s]Capturing CUDA graphs (PIECEWISE):  44%|████▍     | 4/9 [00:00<00:00,  5.00it/s]Capturing CUDA graphs (PIECEWISE):  56%|█████▌    | 5/9 [00:01<00:00,  4.94it/s]Capturing CUDA graphs (PIECEWISE):  67%|██████▋   | 6/9 [00:01<00:00,  4.80it/s]Capturing CUDA graphs (PIECEWISE):  78%|███████▊  | 7/9 [00:01<00:00,  4.67it/s]Capturing CUDA graphs (PIECEWISE):  89%|████████▉ | 8/9 [00:01<00:00,  4.40it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 9/9 [00:01<00:00,  4.68it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 9/9 [00:01<00:00,  4.73it/s]
+Capturing CUDA graphs (FULL):   0%|          | 0/2 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  50%|█████     | 1/2 [00:00<00:00,  5.62it/s]Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00,  5.18it/s]Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00,  5.23it/s]
+(MainProcess pid=49523) INFO 11-19 17:51:56 [model_runner.py:1087] Graph capturing finished in 3 secs, took 0.11 GiB
+(MainProcess pid=49523) INFO 11-19 17:51:56 [gpu_worker.py:692] Available KV cache memory: 18.24 GiB
+(MainProcess pid=49523) INFO 11-19 17:51:56 [gpu_worker.py:707] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.3500 is equivalent to --gpu-memory-utilization=0.3485 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.3515. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(MainProcess pid=49523) INFO 11-19 17:51:56 [kv_cache_utils.py:2464] GPU KV cache size: 132,173 tokens, Maximum concurrency for 1,688 tokens per request: 78.30x
+(MainProcess pid=49523) INFO 11-19 17:51:56 [kernel_warmup.py:172] JIT kernel warmup starting.
+(MainProcess pid=49523) INFO 11-19 17:51:56 [kernel_warmup.py:185] JIT kernel warmup finished in 0.00s.
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/9 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):  11%|█         | 1/9 [00:00<00:01,  5.12it/s]Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 2/9 [00:00<00:01,  5.32it/s]Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 3/9 [00:00<00:01,  5.41it/s]Capturing CUDA graphs (PIECEWISE):  44%|████▍     | 4/9 [00:00<00:01,  4.95it/s]Capturing CUDA graphs (PIECEWISE):  56%|█████▌    | 5/9 [00:01<00:00,  4.70it/s]Capturing CUDA graphs (PIECEWISE):  67%|██████▋   | 6/9 [00:01<00:00,  4.57it/s]Capturing CUDA graphs (PIECEWISE):  78%|███████▊  | 7/9 [00:01<00:00,  4.46it/s]Capturing CUDA graphs (PIECEWISE):  89%|████████▉ | 8/9 [00:01<00:00,  4.36it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 9/9 [00:01<00:00,  4.55it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 9/9 [00:01<00:00,  4.68it/s]
+Capturing CUDA graphs (FULL):   0%|          | 0/6 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  17%|█▋        | 1/6 [00:00<00:01,  4.94it/s]Capturing CUDA graphs (FULL):  33%|███▎      | 2/6 [00:00<00:00,  4.98it/s]Capturing CUDA graphs (FULL):  50%|█████     | 3/6 [00:00<00:00,  5.04it/s]Capturing CUDA graphs (FULL):  67%|██████▋   | 4/6 [00:00<00:00,  5.02it/s]Capturing CUDA graphs (FULL):  83%|████████▎ | 5/6 [00:00<00:00,  5.09it/s]Capturing CUDA graphs (FULL): 100%|██████████| 6/6 [00:01<00:00,  5.22it/s]Capturing CUDA graphs (FULL): 100%|██████████| 6/6 [00:01<00:00,  5.11it/s]
+(MainProcess pid=49523) INFO 11-19 17:52:20 [model_runner.py:1087] Graph capturing finished in 4 secs, took 0.06 GiB
+(MainProcess pid=49523) INFO 11-19 17:52:20 [gpu_worker.py:892] CUDA graph pool memory: 0.06 GiB (actual), 0.12 GiB (estimated), difference: 0.06 GiB (93.8%).
+(MainProcess pid=49523) INFO 11-19 17:52:20 [gpu_worker.py:955] Free memory on device (78.72/79.25 GiB) on startup. Desired GPU memory utilization is (0.35, 27.74 GiB). Actual usage is 7.62 GiB for consumed memory (weights + non-torch), 1.88 GiB for peak activation, and 0.06 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=19358244455` (18.03 GiB) to fit into requested memory, or `--kv-cache-memory=74104829952` (69.02 GiB) to fully utilize gpu memory. Current kv cache memory in use is 18.24 GiB.
+(MainProcess pid=49523) INFO 11-19 17:52:20 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(MainProcess pid=49523) INFO 11-19 17:52:21 [core.py:373] init engine (profile, create kv cache, warmup model) took 71.07 s (compilation: 38.31 s)
+(MainProcess pid=49523) INFO 11-19 17:52:21 [hf.py:646] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+(MainProcess pid=49523) WARNING 11-19 17:52:27 [input_processor.py:375] Passing raw prompts to InputProcessor is deprecated and will be removed in the future. You should instead pass the outputs of Renderer.render_cmpl() or Renderer.render_chat().
+==PROF== Profiling "vectorized_elementwise_kernel" - 0: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel_with_index" - 1: 0%....50%....100% - 3 passes
+==PROF== Profiling "vectorized_elementwise_kernel" - 2: 0%....50%....100% - 3 passes
+==PROF== Profiling "_prepare_pos_seq_lens_kernel" - 3: 0%....50%....100% - 3 passes
+==PROF== Profiling "_combine_sampled_and_draft_to..." - 4: 0%....50%....100% - 3 passes
+==PROF== Profiling "_gather_block_tables_kernel" - 5: 0%....50%....100% - 3 passes
+==PROF== Profiling "_compute_slot_mappings_kernel" - 6: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused__to_copy_emb..." - 7: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 8: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 9: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 10: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 11: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 12: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 13: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 14: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 15: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 16: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 17: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 18: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 19: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 20: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 21: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 22: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 23: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 24: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 25: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 26: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 27: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 28: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 29: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 30: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 31: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 32: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 33: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 34: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 35: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 36: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 37: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 38: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 39: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 40: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 41: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 42: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 43: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 44: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 45: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 46: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 47: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 48: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 49: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 50: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 51: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 52: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 53: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 54: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 55: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 56: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 57: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 58: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 59: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 60: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 61: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 62: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 63: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 64: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 65: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 66: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 67: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 68: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 69: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 70: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 71: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 72: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 73: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 74: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 75: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 76: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 77: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 78: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 79: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 80: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 81: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 82: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 83: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 84: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 85: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 86: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 87: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 88: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 89: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 90: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 91: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 92: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 93: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 94: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 95: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 96: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 97: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 98: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 99: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 100: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 101: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 102: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 103: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 104: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 105: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 106: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 107: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 108: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 109: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 110: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 111: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 112: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 113: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 114: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 115: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 116: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 117: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 118: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 119: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 120: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 121: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 122: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 123: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 124: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 125: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 126: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 127: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 128: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 129: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 130: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 131: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 132: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 133: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 134: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 135: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 136: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 137: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 138: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 139: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 140: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 141: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 142: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 143: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 144: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 145: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 146: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 147: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 148: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 149: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 150: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 151: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 152: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 153: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 154: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 155: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 156: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 157: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 158: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 159: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 160: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 161: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 162: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 163: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 164: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 165: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 166: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 167: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 168: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 169: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 170: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 171: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 172: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 173: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 174: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 175: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 176: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 177: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 178: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 179: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 180: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 181: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 182: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 183: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 184: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 185: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 186: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 187: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 188: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 189: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 190: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 191: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 192: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 193: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 194: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 195: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 196: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 197: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 198: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 199: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 200: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 201: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 202: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 203: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 204: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 205: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 206: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 207: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 208: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 209: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 210: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 211: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 212: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 213: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 214: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 215: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 216: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 217: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 218: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 219: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 220: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 221: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 222: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 223: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 224: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 225: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 226: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 227: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 228: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 229: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 230: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 231: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 232: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 233: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 234: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 235: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 236: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 237: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 238: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 239: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 240: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 241: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 242: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 243: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 244: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 245: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 246: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 247: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 248: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 249: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 250: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 251: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 252: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 253: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 254: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 255: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 256: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 257: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 258: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 259: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 260: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 261: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 262: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 263: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 264: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 265: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 266: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 267: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 268: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 269: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 270: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 271: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 272: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 273: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 274: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 275: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 276: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 277: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 278: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 279: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 280: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 281: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 282: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 283: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 284: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 285: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 286: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 287: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 288: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 289: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 290: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 291: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 292: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 293: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 294: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 295: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 296: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 297: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 298: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 299: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 300: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 301: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 302: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 303: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 304: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 305: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 306: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 307: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 308: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 309: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 310: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 311: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 312: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 313: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 314: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 315: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 316: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 317: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 318: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 319: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 320: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 321: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 322: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 323: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 324: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 325: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 326: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 327: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 328: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 329: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 330: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 331: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 332: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 333: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 334: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 335: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 336: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 337: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 338: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 339: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 340: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 341: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 342: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 343: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 344: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 345: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 346: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 347: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 348: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 349: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 350: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 351: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 352: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 353: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 354: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 355: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 356: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 357: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 358: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 359: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 360: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 361: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 362: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 363: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 364: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 365: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 366: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 367: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 368: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 369: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 370: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 371: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 372: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 373: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 374: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 375: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 376: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 377: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 378: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 379: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 380: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 381: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 382: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 383: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 384: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 385: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 386: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 387: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 388: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 389: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 390: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 391: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 392: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 393: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 394: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 395: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 396: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 397: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 398: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 399: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 400: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 401: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 402: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 403: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 404: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 405: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 406: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 407: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 408: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 409: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 410: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 411: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 412: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 413: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 414: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 415: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 416: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 417: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 418: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 419: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 420: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 421: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 422: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 423: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 424: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 425: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 426: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 427: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 428: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 429: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 430: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 431: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 432: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 433: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 434: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 435: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 436: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 437: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 438: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 439: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 440: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 441: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 442: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 443: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 444: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 445: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 446: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 447: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 448: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 449: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 450: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 451: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 452: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 453: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 454: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 455: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 456: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 457: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 458: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 459: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 460: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 461: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 462: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 463: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 464: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 465: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 466: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 467: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 468: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 469: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 470: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 471: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 472: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 473: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 474: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 475: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 476: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 477: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 478: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 479: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 480: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 481: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 482: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 483: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 484: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 485: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 486: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 487: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 488: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 489: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 490: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 491: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 492: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 493: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 494: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 495: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 496: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 497: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 498: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 499: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 500: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 501: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 502: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 503: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 504: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 505: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 506: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 507: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 508: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 509: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 510: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 511: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 512: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 513: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 514: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 515: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 516: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 517: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 518: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 519: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 520: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 521: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 522: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 523: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 524: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 525: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 526: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 527: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 528: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 529: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 530: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 531: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 532: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 533: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 534: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_add_cat_inde..." - 535: 0%....50%....100% - 3 passes
+==PROF== Profiling "reshape_and_cache_flash_kernel" - 536: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 537: 0%....50%....100% - 3 passes
+==PROF== Profiling "flash_fwd_splitkv_kernel" - 538: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 539: 0%....50%....100% - 3 passes
+==PROF== Profiling "elementwise_kernel" - 540: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_6..." - 541: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 542: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 543: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_poi_fused_mul_silu_sli..." - 544: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_1..." - 545: 0%....50%....100% - 3 passes
+==PROF== Profiling "splitKreduce_kernel" - 546: 0%....50%....100% - 3 passes
+==PROF== Profiling "triton_red_fused_fused_add_rm..." - 547: 0%....50%....100% - 3 passes
+==PROF== Profiling "vectorized_gather_kernel" - 548: 0%....50%....100% - 3 passes
+==PROF== Profiling "ampere_bf16_s16816gemm_bf16_2..." - 549: 0%....50%....100% - 3 passes
+==PROF== Profiling "index_elementwise_kernel" - 550: 0%....50%....100% - 3 passes
+==PROF== Profiling "index_elementwise_kernel" - 551: 0%....50%....100% - 3 passes
+==PROF== Profiling "_gumbel_sample_kernel" - 552: 0%....50%....100% - 3 passes
+==PROF== Profiling "reduce_kernel" - 553: 0%....50%....100% - 3 passes
+==PROF== Profiling "_scatter_gather_elementwise_k..." - 554: 0%....50%....100% - 3 passes
+==PROF== Profiling "vectorized_elementwise_kernel" - 555: 0%....50%....100% - 3 passes
+==PROF== Profiling "_get_num_sampled_and_rejected..." - 556: 0%....50%....100% - 3 passes
+==PROF== Profiling "_post_update_kernel" - 557: 0%....50%....100% - 3 passes
+MARK prefill_start 1795110747.262040
+MARK prefill_end 1795110748.235292
+MARK decode_start 1795110748.235292
+MARK decode_end 1795111450.271395
+WORKLOAD_JSON {"vllm_version": "0.31.0", "model": "Qwen/Qwen3-4B", "method": "decode-window", "bs": 24, "in_len": 1024, "out_len": 600, "eager": false, "tp": 1, "custom_ar": true, "load_s": 81.53, "prefill_reps": 1, "decode_reps": 1, "t_prefill_s": 0.9733, "t_decode_s": 702.0361, "steps": 599, "step_ms": 1172.014, "n_prefill_tokens": 24576, "n_decode_tokens": 14376, "kv_depth_lo": 1025, "kv_depth_hi": 1624, "max_tokens_per_arrival": 1, "decode_tok_per_s": 20.48}
+WORKLOAD_METRIC 14376
+# load 81.5s | decode-window | prefill 0.973s | decode 702.04s, 599 steps, 1172.014 ms per step (20.48 tok/s, KV depth 1025-1624)
+==PROF== Disconnected from process 49523
+==PROF== Report: /home/hpcgkulk/energy_aware_llm_benchmarking/ncu_bs24.ncu-rep

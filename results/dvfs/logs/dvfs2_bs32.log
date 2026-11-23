@@ -1,0 +1,123 @@
+cap sweep points  : [150, 225, 300] W
+clock sweep points: [510, 610, 710, 810, 1010, 1210, 1410] MHz
+reps per point    : 5
+workload runs as  : uid 1004 (hpcgkulk), environment inherited unchanged
+
+=== Preflight (stock settings, nothing modified yet) ===
+  windows: prefill 7.79s, full 15.37s
+
+=== Power cap sweep (clock left unlocked) ===
+  [cap  ]    150    prefill |  15.15 s | P_med  149.7 W | SM_med   495 MHz | E   2257.6 J | cap  99.0%
+  [cap  ]    150       full |  29.35 s | P_med  149.8 W | SM_med   495 MHz | E   4389.4 J | cap  99.5%
+  [cap  ]    150    prefill |  15.15 s | P_med  150.0 W | SM_med   480 MHz | E   2264.8 J | cap  98.3%
+  [cap  ]    150       full |  29.55 s | P_med  149.9 W | SM_med   480 MHz | E   4413.6 J | cap  99.5%
+  [cap  ]    150    prefill |  15.40 s | P_med  149.6 W | SM_med   480 MHz | E   2314.8 J | cap  99.0%
+  [cap  ]    150       full |  30.00 s | P_med  149.9 W | SM_med   480 MHz | E   4501.5 J | cap  99.7%
+  [cap  ]    150    prefill |  15.32 s | P_med  149.8 W | SM_med   480 MHz | E   2289.6 J | cap  98.7%
+  [cap  ]    150       full |  29.85 s | P_med  149.6 W | SM_med   480 MHz | E   4459.7 J | cap  99.7%
+  [cap  ]    150    prefill |  15.25 s | P_med  149.8 W | SM_med   480 MHz | E   2301.9 J | cap  99.3%
+  [cap  ]    150       full |  29.75 s | P_med  149.8 W | SM_med   480 MHz | E   4453.9 J | cap  99.5%
+  [cap  ]    225    prefill |   8.78 s | P_med  224.8 W | SM_med  1065 MHz | E   1947.7 J | cap  98.3%
+  [cap  ]    225       full |  16.96 s | P_med  224.4 W | SM_med  1065 MHz | E   3806.5 J | cap  98.8%
+  [cap  ]    225    prefill |   8.73 s | P_med  225.5 W | SM_med  1065 MHz | E   1942.2 J | cap  98.9%
+  [cap  ]    225       full |  17.01 s | P_med  225.0 W | SM_med  1065 MHz | E   3800.4 J | cap  99.4%
+  [cap  ]    225    prefill |   8.73 s | P_med  225.2 W | SM_med  1065 MHz | E   1939.2 J | cap  98.3%
+  [cap  ]    225       full |  17.01 s | P_med  224.6 W | SM_med  1065 MHz | E   3801.9 J | cap  98.8%
+  [cap  ]    225    prefill |   8.73 s | P_med  225.4 W | SM_med  1065 MHz | E   1937.9 J | cap  98.3%
+  [cap  ]    225       full |  17.01 s | P_med  224.5 W | SM_med  1065 MHz | E   3802.1 J | cap  99.1%
+  [cap  ]    225    prefill |   8.78 s | P_med  225.0 W | SM_med  1065 MHz | E   1961.7 J | cap  97.7%
+  [cap  ]    225       full |  17.01 s | P_med  224.8 W | SM_med  1065 MHz | E   3821.9 J | cap  99.1%
+  [cap  ]    300    prefill |   7.88 s | P_med  298.5 W | SM_med  1290 MHz | E   2330.6 J | cap  98.1%
+  [cap  ]    300       full |  15.35 s | P_med  299.5 W | SM_med  1275 MHz | E   4577.4 J | cap  99.0%
+  [cap  ]    300    prefill |   7.83 s | P_med  299.7 W | SM_med  1275 MHz | E   2316.2 J | cap  98.7%
+  [cap  ]    300       full |  15.40 s | P_med  299.0 W | SM_med  1275 MHz | E   4588.7 J | cap  99.4%
+  [cap  ]    300    prefill |   7.88 s | P_med  299.6 W | SM_med  1275 MHz | E   2317.5 J | cap  98.1%
+  [cap  ]    300       full |  15.40 s | P_med  299.7 W | SM_med  1275 MHz | E   4592.5 J | cap  99.4%
+  [cap  ]    300    prefill |   7.88 s | P_med  300.6 W | SM_med  1275 MHz | E   2342.8 J | cap  98.1%
+  [cap  ]    300       full |  15.45 s | P_med  299.3 W | SM_med  1275 MHz | E   4585.6 J | cap  99.0%
+  [cap  ]    300    prefill |   7.83 s | P_med  299.9 W | SM_med  1275 MHz | E   2314.7 J | cap  98.1%
+  [cap  ]    300       full |  15.45 s | P_med  299.2 W | SM_med  1275 MHz | E   4597.7 J | cap  99.0%
+
+=== SM clock sweep (cap restored to default) ===
+  [clock]    510    prefill |  14.45 s | P_med  153.5 W | SM_med   510 MHz | E   2210.0 J | cap   0.0%
+  [clock]    510       full |  28.25 s | P_med  153.2 W | SM_med   510 MHz | E   4322.4 J | cap   0.0%
+  [clock]    510    prefill |  14.50 s | P_med  155.4 W | SM_med   510 MHz | E   2249.3 J | cap   0.0%
+  [clock]    510       full |  28.25 s | P_med  155.2 W | SM_med   510 MHz | E   4385.9 J | cap   0.0%
+  [clock]    510    prefill |  14.50 s | P_med  155.2 W | SM_med   510 MHz | E   2247.3 J | cap   0.0%
+  [clock]    510       full |  28.25 s | P_med  155.3 W | SM_med   510 MHz | E   4393.0 J | cap   0.0%
+  [clock]    510    prefill |  14.50 s | P_med  155.7 W | SM_med   510 MHz | E   2253.0 J | cap   0.0%
+  [clock]    510       full |  28.25 s | P_med  155.5 W | SM_med   510 MHz | E   4393.7 J | cap   0.0%
+  [clock]    510    prefill |  14.50 s | P_med  155.5 W | SM_med   510 MHz | E   2249.9 J | cap   0.0%
+  [clock]    510       full |  28.25 s | P_med  155.5 W | SM_med   510 MHz | E   4394.5 J | cap   0.0%
+  [clock]    610    prefill |  12.09 s | P_med  173.0 W | SM_med   615 MHz | E   2087.0 J | cap   0.0%
+  [clock]    610       full |  23.28 s | P_med  173.8 W | SM_med   615 MHz | E   4036.1 J | cap   0.0%
+  [clock]    610    prefill |  12.09 s | P_med  172.1 W | SM_med   615 MHz | E   2076.6 J | cap   0.0%
+  [clock]    610       full |  23.23 s | P_med  173.7 W | SM_med   615 MHz | E   4026.8 J | cap   0.0%
+  [clock]    610    prefill |  12.09 s | P_med  171.9 W | SM_med   615 MHz | E   2074.8 J | cap   0.0%
+  [clock]    610       full |  23.23 s | P_med  174.0 W | SM_med   615 MHz | E   4014.9 J | cap   0.0%
+  [clock]    610    prefill |  12.09 s | P_med  173.0 W | SM_med   615 MHz | E   2079.9 J | cap   0.0%
+  [clock]    610       full |  23.23 s | P_med  174.7 W | SM_med   615 MHz | E   4034.6 J | cap   0.0%
+  [clock]    610    prefill |  12.09 s | P_med  172.9 W | SM_med   615 MHz | E   2075.1 J | cap   0.0%
+  [clock]    610       full |  23.28 s | P_med  174.5 W | SM_med   615 MHz | E   4042.5 J | cap   0.0%
+  [clock]    710    prefill |  10.59 s | P_med  188.4 W | SM_med   720 MHz | E   1986.9 J | cap   0.0%
+  [clock]    710       full |  20.52 s | P_med  189.8 W | SM_med   720 MHz | E   3879.6 J | cap   0.0%
+  [clock]    710    prefill |  10.59 s | P_med  188.2 W | SM_med   720 MHz | E   1997.2 J | cap   0.0%
+  [clock]    710       full |  20.52 s | P_med  189.4 W | SM_med   720 MHz | E   3889.5 J | cap   0.0%
+  [clock]    710    prefill |  10.64 s | P_med  188.1 W | SM_med   720 MHz | E   2004.4 J | cap   0.0%
+  [clock]    710       full |  20.47 s | P_med  189.9 W | SM_med   720 MHz | E   3884.7 J | cap   0.0%
+  [clock]    710    prefill |  10.63 s | P_med  187.9 W | SM_med   720 MHz | E   1999.5 J | cap   0.0%
+  [clock]    710       full |  20.47 s | P_med  189.3 W | SM_med   720 MHz | E   3865.9 J | cap   0.0%
+  [clock]    710    prefill |  10.59 s | P_med  188.4 W | SM_med   720 MHz | E   2004.1 J | cap   0.0%
+  [clock]    710       full |  20.47 s | P_med  189.4 W | SM_med   720 MHz | E   3866.7 J | cap   0.0%
+  [clock]    810    prefill |   9.88 s | P_med  197.2 W | SM_med   810 MHz | E   1955.3 J | cap   0.0%
+  [clock]    810       full |  19.22 s | P_med  198.2 W | SM_med   810 MHz | E   3811.2 J | cap   0.0%
+  [clock]    810    prefill |   9.83 s | P_med  197.3 W | SM_med   810 MHz | E   1949.0 J | cap   0.0%
+  [clock]    810       full |  19.27 s | P_med  197.9 W | SM_med   810 MHz | E   3810.6 J | cap   0.0%
+  [clock]    810    prefill |   9.88 s | P_med  197.3 W | SM_med   810 MHz | E   1960.9 J | cap   0.0%
+  [clock]    810       full |  19.22 s | P_med  198.0 W | SM_med   810 MHz | E   3813.3 J | cap   0.0%
+  [clock]    810    prefill |   9.88 s | P_med  197.7 W | SM_med   810 MHz | E   1958.8 J | cap   0.0%
+  [clock]    810       full |  19.22 s | P_med  198.4 W | SM_med   810 MHz | E   3817.1 J | cap   0.0%
+  [clock]    810    prefill |   9.84 s | P_med  197.8 W | SM_med   810 MHz | E   1948.2 J | cap   0.0%
+  [clock]    810       full |  19.22 s | P_med  198.0 W | SM_med   810 MHz | E   3808.0 J | cap   0.0%
+  [clock]   1010    prefill |   8.68 s | P_med  215.9 W | SM_med  1020 MHz | E   1924.9 J | cap   0.0%
+  [clock]   1010       full |  17.11 s | P_med  217.6 W | SM_med  1020 MHz | E   3752.4 J | cap   0.0%
+  [clock]   1010    prefill |   8.68 s | P_med  216.0 W | SM_med  1020 MHz | E   1924.8 J | cap   0.0%
+  [clock]   1010       full |  17.11 s | P_med  217.8 W | SM_med  1020 MHz | E   3751.5 J | cap   0.0%
+  [clock]   1010    prefill |   8.73 s | P_med  215.2 W | SM_med  1020 MHz | E   1903.3 J | cap   0.0%
+  [clock]   1010       full |  17.11 s | P_med  216.5 W | SM_med  1020 MHz | E   3748.8 J | cap   0.0%
+  [clock]   1010    prefill |   8.68 s | P_med  215.3 W | SM_med  1020 MHz | E   1911.6 J | cap   0.0%
+  [clock]   1010       full |  17.11 s | P_med  217.0 W | SM_med  1020 MHz | E   3740.3 J | cap   0.0%
+  [clock]   1010    prefill |   8.68 s | P_med  216.0 W | SM_med  1020 MHz | E   1915.6 J | cap   0.0%
+  [clock]   1010       full |  17.11 s | P_med  217.4 W | SM_med  1020 MHz | E   3747.6 J | cap   0.0%
+  [clock]   1210    prefill |   7.98 s | P_med  270.4 W | SM_med  1215 MHz | E   2153.8 J | cap  16.2%
+  [clock]   1210       full |  15.70 s | P_med  272.7 W | SM_med  1215 MHz | E   4299.0 J | cap   8.3%
+  [clock]   1210    prefill |   7.99 s | P_med  271.1 W | SM_med  1215 MHz | E   2172.4 J | cap  15.6%
+  [clock]   1210       full |  15.68 s | P_med  273.2 W | SM_med  1215 MHz | E   4295.9 J | cap   8.3%
+  [clock]   1210    prefill |   8.03 s | P_med  271.6 W | SM_med  1215 MHz | E   2189.1 J | cap  14.9%
+  [clock]   1210       full |  15.70 s | P_med  273.4 W | SM_med  1215 MHz | E   4303.9 J | cap   8.3%
+  [clock]   1210    prefill |   7.98 s | P_med  271.7 W | SM_med  1215 MHz | E   2179.5 J | cap  16.2%
+  [clock]   1210       full |  15.70 s | P_med  273.4 W | SM_med  1215 MHz | E   4314.1 J | cap   8.9%
+  [clock]   1210    prefill |   7.98 s | P_med  271.6 W | SM_med  1215 MHz | E   2170.3 J | cap  17.5%
+  [clock]   1210       full |  15.70 s | P_med  273.8 W | SM_med  1215 MHz | E   4310.6 J | cap   8.3%
+  [clock]   1410    prefill |   7.83 s | P_med  298.8 W | SM_med  1275 MHz | E   2306.0 J | cap  97.5%
+  [clock]   1410       full |  15.45 s | P_med  299.5 W | SM_med  1275 MHz | E   4592.2 J | cap  99.4%
+  [clock]   1410    prefill |   7.88 s | P_med  299.2 W | SM_med  1275 MHz | E   2331.1 J | cap  98.1%
+  [clock]   1410       full |  15.40 s | P_med  299.8 W | SM_med  1275 MHz | E   4600.5 J | cap  99.4%
+  [clock]   1410    prefill |   7.83 s | P_med  299.2 W | SM_med  1275 MHz | E   2315.1 J | cap  98.1%
+  [clock]   1410       full |  15.45 s | P_med  299.7 W | SM_med  1275 MHz | E   4587.7 J | cap  98.7%
+  [clock]   1410    prefill |   7.88 s | P_med  300.5 W | SM_med  1275 MHz | E   2336.8 J | cap  98.1%
+  [clock]   1410       full |  15.45 s | P_med  300.2 W | SM_med  1275 MHz | E   4604.8 J | cap  99.4%
+  [clock]   1410    prefill |   7.88 s | P_med  299.4 W | SM_med  1275 MHz | E   2324.4 J | cap  97.5%
+  [clock]   1410       full |  15.40 s | P_med  299.6 W | SM_med  1275 MHz | E   4588.9 J | cap  99.0%
+
+wrote results/dvfs/csv/dvfs2_bs32_seq1024.csv  (150 rows)
+
+(verdict computed on phase = full)
+
+=== Verdict ===
+  The power cap did engage in the 150-300 W range.
+  Power spread across caps is 150.1 W.
+  => The cap is active in that range, but note it acts by lowering the
+     SM clock. Compare against the clock sweep below to see which
+     reaches lower J per unit of work.
+  Clock sweep: cheapest at 1010 MHz, 18.8% less energy than the most expensive setting.

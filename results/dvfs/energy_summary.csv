@@ -1,0 +1,5 @@
+bs,best_mode,best_setting,best_clock_mhz,j_per_tok,energy_saved_pct,slower_pct
+1,clock,1010.0,1020.0,1.604,26.7,11.3
+16,clock,1010.0,1020.0,0.1536,20.6,9.2
+32,clock,1010.0,1020.0,0.1116,19.4,11.1
+64,clock,1010.0,1020.0,0.084,11.0,5.4
