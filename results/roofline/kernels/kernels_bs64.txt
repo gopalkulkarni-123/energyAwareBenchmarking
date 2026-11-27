@@ -1,0 +1,122 @@
+ncu_bs64.csv: 594 launches, 18.38 ms kernel time
+
+group      launches /layer      ms % time      GB  TB/s   GFLOP  kernel
+matmul          108   3.00   3.332  18.1%   4.182  1.26  235.62  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+matmul           37   1.03   3.244  17.7%   4.648  1.43  279.40  ampere_bf16_s16816gemm_bf16_256x64_ldg8_f2f_stages_64x3_tn
+matmul           72   2.00   0.382   2.1%   0.107  0.28    0.12  cublasLt::splitKreduce_kernel<...>
+                217   6.03   6.958  37.9%  <- matmul total
+
+attention        36   1.00   9.661  52.6%  14.753  1.53  937.23  flash::flash_fwd_splitkv_kernel<...>
+attention        36   1.00   0.185   1.0%   0.011  0.06    0.00  vllm::reshape_and_cache_flash_kernel<...>
+                 72   2.00   9.845  53.6%  <- attention total
+
+other            72   2.00   0.451   2.5%   0.020  0.04    0.07  at::elementwise_kernel<...>
+other            35   0.97   0.183   1.0%   0.011  0.06    0.17  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+other            36   1.00   0.174   0.9%   0.000  0.00    0.34  triton_poi_fused_mul_silu_slice_1
+other            36   1.00   0.170   0.9%   0.007  0.04    0.10  triton_red_fused_fused_add_rms_norm_2
+other            36   1.00   0.164   0.9%   0.007  0.04    0.08  triton_red_fused_fused_add_rms_norm_0
+other            35   0.97   0.150   0.8%   0.002  0.02    0.04  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+other            36   1.00   0.142   0.8%   0.000  0.00    0.00  at::elementwise_kernel<...>
+other             1   0.03   0.032   0.2%   0.020  0.60    0.00  _gumbel_sample_kernel
+other             1   0.03   0.015   0.1%   0.000  0.00    0.00  _compute_slot_mappings_kernel
+other             1   0.03   0.014   0.1%   0.000  0.00    0.00  _post_update_kernel
+other             1   0.03   0.009   0.0%   0.000  0.00    0.00  _gather_block_tables_kernel
+other             1   0.03   0.008   0.0%   0.000  0.00    0.00  _combine_sampled_and_draft_tokens_kernel
+other             1   0.03   0.008   0.0%   0.000  0.01    0.00  at::reduce_kernel<...>
+other             1   0.03   0.008   0.0%   0.000  0.00    0.00  _get_num_sampled_and_rejected_kernel
+other             2   0.06   0.005   0.0%   0.000  0.00    0.00  at::vectorized_elementwise_kernel<...>
+other             1   0.03   0.005   0.0%   0.000  0.00    0.00  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+other             1   0.03   0.005   0.0%   0.000  0.03    0.00  triton_red_fused__to_copy_embedding_rms_norm_0
+other             1   0.03   0.004   0.0%   0.000  0.00    0.00  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+other             1   0.03   0.004   0.0%   0.000  0.01    0.00  at::index_elementwise_kernel<...>
+other             1   0.03   0.004   0.0%   0.000  0.01    0.00  at::index_elementwise_kernel<...>
+other             1   0.03   0.004   0.0%   0.000  0.08    0.00  at::vectorized_gather_kernel<...>
+other             1   0.03   0.004   0.0%   0.000  0.01    0.00  at::_scatter_gather_elementwise_kernel<...>
+other             1   0.03   0.004   0.0%   0.000  0.00    0.00  _prepare_pos_seq_lens_kernel
+other             1   0.03   0.003   0.0%   0.000  0.00    0.00  <...>::elementwise_kernel_with_index<...>
+other             1   0.03   0.002   0.0%   0.000  0.00    0.00  at::vectorized_elementwise_kernel<...>
+                305   8.47   1.571   8.6%  <- other total
+
+first 80 launches, in launch order:
+     0  other          2.5 us  at::vectorized_elementwise_kernel<...>
+     1  other          2.7 us  <...>::elementwise_kernel_with_index<...>
+     2  other          2.3 us  at::vectorized_elementwise_kernel<...>
+     3  other          3.6 us  _prepare_pos_seq_lens_kernel
+     4  other          8.4 us  _combine_sampled_and_draft_tokens_kernel
+     5  other          8.6 us  _gather_block_tables_kernel
+     6  other         14.8 us  _compute_slot_mappings_kernel
+     7  other          4.6 us  triton_red_fused__to_copy_embedding_rms_norm_0
+     8  matmul        29.5 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+     9  other          4.9 us  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+    10  other          4.3 us  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+    11  attention      5.3 us  vllm::reshape_and_cache_flash_kernel<...>
+    12  other          6.9 us  at::elementwise_kernel<...>
+    13  attention    269.4 us  flash::flash_fwd_splitkv_kernel<...>
+    14  other          5.9 us  at::elementwise_kernel<...>
+    15  other          3.9 us  at::elementwise_kernel<...>
+    16  matmul        20.4 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    17  matmul         5.0 us  cublasLt::splitKreduce_kernel<...>
+    18  other          4.6 us  triton_red_fused_fused_add_rms_norm_0
+    19  matmul        77.1 us  ampere_bf16_s16816gemm_bf16_256x64_ldg8_f2f_stages_64x3_tn
+    20  other          5.0 us  triton_poi_fused_mul_silu_slice_1
+    21  matmul        42.0 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    22  matmul         5.7 us  cublasLt::splitKreduce_kernel<...>
+    23  other          4.8 us  triton_red_fused_fused_add_rms_norm_2
+    24  matmul        31.4 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    25  other          5.3 us  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+    26  other          4.5 us  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+    27  attention      5.4 us  vllm::reshape_and_cache_flash_kernel<...>
+    28  other          5.9 us  at::elementwise_kernel<...>
+    29  attention    267.7 us  flash::flash_fwd_splitkv_kernel<...>
+    30  other          6.8 us  at::elementwise_kernel<...>
+    31  other          3.9 us  at::elementwise_kernel<...>
+    32  matmul        20.7 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    33  matmul         5.1 us  cublasLt::splitKreduce_kernel<...>
+    34  other          4.5 us  triton_red_fused_fused_add_rms_norm_0
+    35  matmul        75.9 us  ampere_bf16_s16816gemm_bf16_256x64_ldg8_f2f_stages_64x3_tn
+    36  other          4.8 us  triton_poi_fused_mul_silu_slice_1
+    37  matmul        42.0 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    38  matmul         5.7 us  cublasLt::splitKreduce_kernel<...>
+    39  other          4.6 us  triton_red_fused_fused_add_rms_norm_2
+    40  matmul        29.3 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    41  other          5.5 us  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+    42  other          4.1 us  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+    43  attention      4.9 us  vllm::reshape_and_cache_flash_kernel<...>
+    44  other          5.8 us  at::elementwise_kernel<...>
+    45  attention    270.4 us  flash::flash_fwd_splitkv_kernel<...>
+    46  other          6.9 us  at::elementwise_kernel<...>
+    47  other          3.9 us  at::elementwise_kernel<...>
+    48  matmul        20.5 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    49  matmul         5.0 us  cublasLt::splitKreduce_kernel<...>
+    50  other          4.7 us  triton_red_fused_fused_add_rms_norm_0
+    51  matmul        75.8 us  ampere_bf16_s16816gemm_bf16_256x64_ldg8_f2f_stages_64x3_tn
+    52  other          4.8 us  triton_poi_fused_mul_silu_slice_1
+    53  matmul        42.0 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    54  matmul         5.7 us  cublasLt::splitKreduce_kernel<...>
+    55  other          5.0 us  triton_red_fused_fused_add_rms_norm_2
+    56  matmul        30.4 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    57  other          5.1 us  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+    58  other          4.1 us  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+    59  attention      5.3 us  vllm::reshape_and_cache_flash_kernel<...>
+    60  other          6.1 us  at::elementwise_kernel<...>
+    61  attention    267.0 us  flash::flash_fwd_splitkv_kernel<...>
+    62  other          5.8 us  at::elementwise_kernel<...>
+    63  other          3.9 us  at::elementwise_kernel<...>
+    64  matmul        20.5 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    65  matmul         5.1 us  cublasLt::splitKreduce_kernel<...>
+    66  other          4.4 us  triton_red_fused_fused_add_rms_norm_0
+    67  matmul        76.3 us  ampere_bf16_s16816gemm_bf16_256x64_ldg8_f2f_stages_64x3_tn
+    68  other          4.9 us  triton_poi_fused_mul_silu_slice_1
+    69  matmul        41.6 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    70  matmul         5.6 us  cublasLt::splitKreduce_kernel<...>
+    71  other          4.6 us  triton_red_fused_fused_add_rms_norm_2
+    72  matmul        31.1 us  ampere_bf16_s16816gemm_bf16_128x64_ldg8_f2f_stages_64x4_tn
+    73  other          5.4 us  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+    74  other          4.4 us  triton_red_fused_add_cat_index_select_mul_rms_norm_split_split_with...
+    75  attention      5.1 us  vllm::reshape_and_cache_flash_kernel<...>
+    76  other          5.8 us  at::elementwise_kernel<...>
+    77  attention    267.9 us  flash::flash_fwd_splitkv_kernel<...>
+    78  other          6.7 us  at::elementwise_kernel<...>
+    79  other          3.9 us  at::elementwise_kernel<...>
+
+wrote kernel_list_ncu_bs64.csv and kernel_seq_ncu_bs64.csv

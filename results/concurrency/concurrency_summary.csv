@@ -1,0 +1,6 @@
+bs,kv_pool_tokens,max_len,vllm_capacity,steps,extra_steps,fits_by_memory,predicted_drop_step,measured_drop_step,full_pct
+128,392400,2048,191.6,1025,1,yes,,1024,100.0
+160,454400,2048,221.88,1044,20,yes,,1024,100.0
+192,454080,2048,221.72,1049,25,yes,,1024,100.0
+224,453744,2048,221.55,1067,43,no,1001,1010,98.6
+256,453392,2048,221.38,1334,310,no,747,756,73.0
